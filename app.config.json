@@ -1,0 +1,25 @@
+{
+  "dist": "public",
+  "vendor": [
+    "bower_components/angular/angular.js",
+    "bower_components/angular-resource/angular-resource.js",
+    "bower_components/angular-ui-router/release/angular-ui-router.js",
+    "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
+    "bower_components/lodash/dist/lodash.js",
+    "bower_components/async/lib/async.js"
+  ],
+  "ngMock": ["bower_components/angular-mocks/angular-mocks.js"],
+  "index": {
+    "html": "client/index.html",
+    "js": "client/index.js",
+    "less": "client/index.less"
+  },
+  "app": {
+    "js": "client/**/!(index|*spec).js",
+    "html": "client/**/!(index).html",
+    "less": "client/**/!(less)/**/!(index|bundle).less"
+  },
+  "test": [
+    "client/{states,common}/**/*.spec.js"
+  ]
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <title>My AngularJS App</title>
+  <!-- for grunt watch livereload -->
+  <script src="//localhost:35729/livereload.js"></script>
+    <!-- Grunt generated bundles -->
+  <link href="bundle.css" rel="stylesheet">
+  <script src="bundle.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+  <main class="container">
+
+    <div class="hangman">
+      <div id="title">Hangman</div>
+
+      <!-- Menu -->
+      <menu>
+        <div>
+          <label>Incorrect Guesses:</label> {{ points }}
+        </div>
+        <div>
+          <label>Available letters:</label> 
+          <div class="available-letters">
+            <div 
+              ng-repeat="letter in gameLetters || letters"
+              ng-click="check(letter)">
+              {{ letter }}
+            </div>
+          </div>
+        </div>
+      </menu>
+      
+      <!-- Hangman -->
+      <svg width="500" height="550">
+
+        <!-- Hanger -->
+        <polyline points="400,500 100,500 150,500 150,100 320,100 320,150"
+                  style="fill:none;stroke:black;stroke-width:15" />
+
+        <!-- body -->
+        <line ng-show="points >= 2" x1="320" y1="190" x2="320" y2="360"/>
+        <!-- left arm -->
+        <line ng-show="points >= 3" x1="320" y1="260" x2="250" y2="230"/>
+        <!-- Right arm -->
+        <line ng-show="points >= 4" x1="320" y1="260" x2="390" y2="230"/>
+        <!-- left leg -->
+        <line ng-show="points >= 5" x1="320" y1="360" x2="250" y2="450"/>
+        <!-- Right leg -->
+        <line ng-show="points >= 6" x1="320" y1="360" x2="390" y2="450"/>
+        <!-- head -->
+        <circle ng-show="points >= 1" cx="320" cy="190" r="40" fill="white" />
+      </svg>
+      
+      <!-- Word -->
+      <div class="word">
+        <div ng-repeat="letter in word" class="underlined-letter"> 
+          <div class="letter" ng-class="letter.guessed ? '': 'invisible'">{{letter.name}}</div>
+          <div class="underline"></div>
+        </div>
+      </div>
+    </div>
+    
+  </main>
+
+  <!-- Angular Templates -->
+  <!-- build:section templates --><!-- /build -->
+</body>
+</html>
